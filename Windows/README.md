@@ -1,7 +1,7 @@
-Tributech Demeter Enrollment Windows
+Tributech Node Enrollment Windows
 ==============================
 
-This repository provides command line tools to register a [Tributech Agent](https://docs.tributech.io/tributech_agent/overview) with a [Tributech Demeter](https://docs.tributech.io/tributech_node/overview) instance.
+This repository provides command line tools to register a [Tributech Agent](https://docs.tributech.io/tributech_agent/overview) with a [Tributech Node](https://docs.tributech.io/tributech_node/overview) instance.
 
 Requirements
 ==============================
@@ -77,7 +77,7 @@ After executing the command the script generates 3 files
     </details>
 - enrollment.cnf, can be ignored
 
-Upload the _enrollment.csr_ this file to the Tributech UI or Demeter API to receive your signed public key. Save the received public key into the same folder that contains the `enrollment.key` and name the file `enrollment.crt`. Now we can reference the folder containing both files in our `docker-compose.yml` by setting the environment variable `EnrollmentOptions__Directory` accordingly, e.g. `docker-compose.yml` with [env variable](https://docs.docker.com/compose/environment-variables/set-environment-variables/) `ENROLLMENT_DIRECTORY` to reference the enrollment files.
+Upload the _enrollment.csr_ this file to the Tributech UI or Tributech Node API to receive your signed public key. Save the received public key into the same folder that contains the `enrollment.key` and name the file `enrollment.crt`. Now we can reference the folder containing both files in our `docker-compose.yml` by setting the environment variable `EnrollmentOptions__Directory` accordingly, e.g. `docker-compose.yml` with [env variable](https://docs.docker.com/compose/environment-variables/set-environment-variables/) `ENROLLMENT_DIRECTORY` to reference the enrollment files.
 
 
 ```yml
@@ -95,11 +95,11 @@ services:
     ...
 ```
 
-Now we can startup the agent in the docker compose environment and wait for a Demeter User to approve this agent.
+Now we can startup the agent in the docker compose environment and wait for a Tributech Node User to approve this agent.
 
 Tributech Environment Documentation
 -----------
-* [Tributech Demeter](https://docs.tributech.io/tributech_node/overview)
+* [Tributech Node](https://docs.tributech.io/tributech_node/overview)
 * [Tributech Agent](https://docs.tributech.io/tributech_agent/overview)
  
 License

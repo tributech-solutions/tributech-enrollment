@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 #
-# Generate Enrollment Certificate Signing Request (CSR) for Demeter
+# Generate Enrollment Certificate Signing Request (CSR) for Tributech Node
 #
 # This script is used to create a private key and a certificate signing request (CSR) for enrollment. 
 #

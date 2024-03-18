@@ -18,7 +18,7 @@ working production installation*
 If you have any problems with Tributech Enrollment then please take the following steps
 first:
 
-- Make sure that Tributech Demeter is running and accessible from your environment
+- Make sure that Tributech Node is running and accessible from your environment
 - Make sure that you have read and write access from the folder executing the scripts
 - Download the latest version from the repository to see if the problem has already been addressed.
 - Try running the scripts again with the latest version of [openssl](https://github.com/openssl/openssl)

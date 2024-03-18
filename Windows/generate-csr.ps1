@@ -2,7 +2,7 @@
 
 <#
 .SYNOPSIS
-	Generate a certificate signing request (CSR) for Agent Enrollment (Tributech/Demeter).
+	Generate a certificate signing request (CSR) for Agent Enrollment Tributech Node.
 .DESCRIPTION
 	!!! EVERY EXECUTION will create new private enrollment.key !!!
 
@@ -50,7 +50,7 @@ After executing the script, copy the content of the enrollment.csr file and past
 	Copyright (c) 2024 Tributech Solutions GmbH
 	License        : Apache License 2.0 (see LICENSE.txt or https://www.apache.org/licenses/LICENSE-2.0)
 	Version:		0.1
-	Demeterversion: 4.0
+	Demeter Version: 4.0
 
 	Licensed to the Apache Software Foundation (ASF) under one
 	or more contributor license agreements. See the NOTICE file
