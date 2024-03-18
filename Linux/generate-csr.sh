@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
-#
+ENROLLMENT_KEY_FILE="enrollment.key"
+ENROLLMENT_CSR_FILE="enrollment.csr"
+ENROLLMENT_CONFIG_FILE="enrollment.cnf"
+
 # Generate Enrollment Certificate Signing Request (CSR) for Tributech Node
 #
 # This script is used to create a private key and a certificate signing request (CSR) for enrollment. 
@@ -27,9 +30,6 @@
 #
 
 
-ENROLLMENT_KEY_FILE="enrollment.key"
-ENROLLMENT_CSR_FILE="enrollment.csr"
-ENROLLMENT_CONFIG_FILE="enrollment.cnf"
 cat << EOF > $ENROLLMENT_CONFIG_FILE
 [ req ]
 prompt              = no
