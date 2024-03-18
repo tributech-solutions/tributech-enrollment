@@ -14,6 +14,7 @@ Documentation
 Download the Script [generate-csr.sh](https://github.com/tributech-solutions/tributech-enrollment/Linux/generate-csr.sh) to a local folder with read, write and execution rights. We can generate the Certificate Signing Request (CSR) with the following command:
 
 ```bash
+$ chmod +x generate-csr.sh
 $ ./generate-csr.sh
 ```
 
