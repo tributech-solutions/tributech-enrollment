@@ -1,7 +1,7 @@
 Tributech Demeter Enrollment
 ==============================
 
-This repository provides command line tools to register connect a [Tributech Agent](https://docs.tributech.io/tributech_agent/overview) with a [Tributech Demeter](https://docs.tributech.io/tributech_node/overview) instance.
+This repository provides command line tools to register a [Tributech Agent](https://docs.tributech.io/tributech_agent/overview) with a [Tributech Demeter](https://docs.tributech.io/tributech_node/overview) instance.
 
 Table of Contents
 ==============================
