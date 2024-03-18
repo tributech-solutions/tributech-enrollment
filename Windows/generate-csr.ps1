@@ -44,13 +44,13 @@ After executing the script, copy the content of the enrollment.csr file and past
 
 	Same as the base example, but also prints the certificate signing request (CSR) in a json compatible string to the console too.
 .NOTES
-	File Name      : generate-csr.ps1
-	Author         : Tributech Solutions GmbH
-	Prerequisite   : PowerShell 5.1 or later
+	File Name             : generate-csr.ps1
+	Author                : Tributech Solutions GmbH
+	Prerequisite          : PowerShell 5.1 or later
 	Copyright (c) 2024 Tributech Solutions GmbH
-	License        : Apache License 2.0 (see LICENSE.txt or https://www.apache.org/licenses/LICENSE-2.0)
-	Version:		0.1
-	Demeter Version: 4.0
+	License               : Apache License 2.0 (see LICENSE.txt or https://www.apache.org/licenses/LICENSE-2.0)
+	Script Version        : 0.1.0
+	Tributech Node Version: 4.0.x
 
 	Licensed to the Apache Software Foundation (ASF) under one
 	or more contributor license agreements. See the NOTICE file
