@@ -1,5 +1,15 @@
 #!/usr/bin/env bash
 
+#
+# Generate Enrollment Certificate Signing Request (CSR) for Demeter
+#
+# This script is used to create a private key and a certificate signing request (CSR) for enrollment. 
+#
+# Author: Tributech Solutions GmbH
+# Copyright (c) 2024 Tributech Solutions GmbH
+# License: Apache License 2.0 (see LICENSE.txt)
+
+
 ENROLLMENT_KEY_FILE="enrollment.key"
 ENROLLMENT_CSR_FILE="enrollment.csr"
 ENROLLMENT_CONFIG_FILE="enrollment.cnf"
