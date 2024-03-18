@@ -77,7 +77,25 @@ After executing the command the script generates 3 files
     </details>
 - enrollment.cnf, can be ignored
 
-Upload the _enrollment.csr_ this file to the Tributech UI or Demeter API to receive your signed public key.
+Upload the _enrollment.csr_ this file to the Tributech UI or Demeter API to receive your signed public key. Save the received public key into the same folder that contains the `enrollment.key` and name the file `enrollment.crt`. Now we can reference the folder containing both files in our `docker-compose.yml` by setting the environment variable `EnrollmentOptions__Directory` accordingly, e.g. `docker-compose.yml` with [env variable](https://docs.docker.com/compose/environment-variables/set-environment-variables/) `ENROLLMENT_DIRECTORY` to reference the enrollment files.
+
+
+```yml
+# .env file
+ENROLLMENT_DIRECTORY=./enrollment
+```
+
+```yml
+# docker-compose.yml file
+services:
+  tributech-agent:
+    ...
+    environment:
+      - EnrollmentOptions__Directory=${ENROLLMENT_DIRECTORY:?"The Enrollment Directory must be configured in the .env file."}
+    ...
+```
+
+Now we can startup the agent in the docker compose environment and wait for a Demeter User to approve this agent.
 
 Tributech Environment Documentation
 -----------
@@ -90,9 +108,9 @@ Tributech-Enrollment is licensed under the Apache License 2.0, which means that
 you are free to get and use it for commercial and non-commercial
 purposes as long as you fulfill its conditions.
 
-See the [LICENSE.txt](Linux/LICENSE-2.0.txt) file for more details.
+See the [LICENSE.txt](https://github.com/tributech-solutions/tributech-enrollment/Linux/LICENSE-2.0.txt) file for more details.
 
 Support
 ==============================
 There are various ways to get in touch. The correct channel depends on
-your requirement. See the [SUPPORT](SUPPORT.md) file for more details.
+your requirement. See the [SUPPORT](https://github.com/tributech-solutions/tributech-enrollment/SUPPORT.md) file for more details.
