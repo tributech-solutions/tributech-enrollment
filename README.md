@@ -33,8 +33,8 @@ README Files
 
 There are some README.md files in the top level of the source distribution containing additional information on how to use the scripts on different operation systems.
 
- * [Information for Windows Users](https://github.com/tributech-solutions/tributech-enrollment/Windows/README.md)
- * [Information for for Unix Users](https://github.com/tributech-solutions/tributech-enrollment/Linux/README.md)
+ * [Information for Windows Users](./Windows/README.md)
+ * [Information for for Unix Users](./Linux/README.md)
 
 Tributech Environment Documentation
 -----------
@@ -47,9 +47,9 @@ Tributech-Enrollment is licensed under the Apache License 2.0, which means that
 you are free to get and use it for commercial and non-commercial
 purposes as long as you fulfill its conditions.
 
-See the [LICENSE.txt](https://github.com/tributech-solutions/tributech-enrollment/LICENSE.txt) file for more details.
+See the [LICENSE.txt](LICENSE.txt) file for more details.
 
 Support
 ==============================
 There are various ways to get in touch. The correct channel depends on
-your requirement. See the [SUPPORT](https://github.com/tributech-solutions/tributech-enrollment/SUPPORT.md) file for more details.
+your requirement. See the [SUPPORT](SUPPORT.md) file for more details.

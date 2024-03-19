@@ -38,3 +38,5 @@ and include the following information:
 Not only errors in the software, also errors in the documentation, in
 particular the manual pages, can be reported as issues.
 
+
+[github-issues]:     https://github.com/tributech-solutions/tributech-enrollment/issues/new/choose
