@@ -58,7 +58,7 @@ while getopts ":hjp" opt; do
 			echo "$(basename "$0") Generate CSR"
             echo ""
 			echo "Script Version        : 0.1.0"
-	        echo "Tributech Node Version: 4.0.x"
+	        echo "Tributech Node Version: > 4.x"
             echo ""
 			echo "!!! EVERY EXECUTION will create new private enrollment.key !!!"
 			echo ""
