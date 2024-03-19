@@ -26,7 +26,7 @@ protocols.
 
 Documentation
 ==============================
-The scripts are used in the Enrollment Process before any data can be submitted from a [Tributech Agent](https://docs.tributech.io/tributech_agent/overview) to a [Tributech Node](https://docs.tributech.io/tributech_node/overview) instance. In Order to create a request for the registration of an [Tributech Agent](https://docs.tributech.io/tributech_agent/overview), we need to make sure [Tributech Node](https://docs.tributech.io/tributech_node/overview) is running and accessible from the environment where the script is executed. After the successful execution of the Script the [Tributech Agent](https://docs.tributech.io/tributech_agent/overview) can be approved by a [Tributech Node](https://docs.tributech.io/tributech_node/overview) User. Following the approval, the [Tributech Agent](https://docs.tributech.io/tributech_agent/overview) will be able to send data to [Tributech Node](https://docs.tributech.io/tributech_node/overview).
+The scripts are used in the Enrollment Process before any data can be submitted by a [Tributech Agent](https://docs.tributech.io/tributech_agent/overview) to a [Tributech Node](https://docs.tributech.io/tributech_node/overview) instance. In order to create a request for the registration of an [Tributech Agent](https://docs.tributech.io/tributech_agent/overview), we need to make sure [Tributech Node](https://docs.tributech.io/tributech_node/overview) is running and accessible from the environment where the script is executed. After the successful execution of the script the [Tributech Agent](https://docs.tributech.io/tributech_agent/overview) can be approved by a [Tributech Node](https://docs.tributech.io/tributech_node/overview) user. Following the approval, the [Tributech Agent](https://docs.tributech.io/tributech_agent/overview) will be able to send data to [Tributech Node](https://docs.tributech.io/tributech_node/overview).
 
 README Files
 ------------
@@ -34,7 +34,7 @@ README Files
 There are some README.md files in the top level of the source distribution containing additional information on how to use the scripts on different operation systems.
 
  * [Information for Windows Users](./Windows/README.md)
- * [Information for for Unix Users](./Linux/README.md)
+ * [Information for Unix Users](./Linux/README.md)
 
 Tributech Environment Documentation
 -----------
