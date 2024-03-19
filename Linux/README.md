@@ -11,7 +11,7 @@ Required Tools:
 
 Documentation
 ==============================
-Download the Script [generate-csr.sh](https://github.com/tributech-solutions/tributech-enrollment/Linux/generate-csr.sh) to a local folder with read, write and execution rights. We can generate the Certificate Signing Request (CSR) with the following command:
+Download the Script [generate-csr.sh](generate-csr.sh) to a local folder with read, write and execution rights. We can generate the Certificate Signing Request (CSR) with the following command:
 
 ```bash
 $ chmod +x generate-csr.sh
@@ -109,9 +109,9 @@ Tributech-Enrollment is licensed under the Apache License 2.0, which means that
 you are free to get and use it for commercial and non-commercial
 purposes as long as you fulfill its conditions.
 
-See the [LICENSE.txt](https://github.com/tributech-solutions/tributech-enrollment/LICENSE.txt) file for more details.
+See the [LICENSE.txt](../LICENSE.txt) file for more details.
 
 Support
 ==============================
 There are various ways to get in touch. The correct channel depends on
-your requirement. See the [SUPPORT](https://github.com/tributech-solutions/tributech-enrollment/SUPPORT.md) file for more details.
+your requirement. See the [SUPPORT](../SUPPORT.md) file for more details.
