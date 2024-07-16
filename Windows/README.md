@@ -8,6 +8,7 @@ Requirements
 Required Tools:
 - **[openssl](https://github.com/openssl/openssl)**
 - **[Powershell 5.1+](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-windows?view=powershell-5.1)** for Windows
+- **[Dev Toys](https://apps.microsoft.com/detail/9pgcv4v3bk4w)** 
 
 Documentation
 ==============================
@@ -77,21 +78,59 @@ After executing the command the script generates 3 files
     </details>
 - enrollment.cnf, can be ignored
 
-Upload the _enrollment.csr_ this file to the Tributech UI or Tributech Node API to receive your signed public key. Save the received public key into the same folder that contains the `enrollment.key` and name the file `enrollment.crt`. Now we can reference the folder containing both files in our `docker-compose.yml` by setting the environment variable `EnrollmentOptions__Directory` accordingly, e.g. `docker-compose.yml` with [env variable](https://docs.docker.com/compose/environment-variables/set-environment-variables/) `ENROLLMENT_DIRECTORY` to reference the enrollment files.
+Upload the _enrollment.csr_ this file to the Tributech UI or Tributech Node API to receive your certificate. 
+Open the returned json file named `certificate.json` and save content of the entry _clientCertificate_ (everything between the two quotation marks, including the -----BEGIN CERTIFICATE----- and -----END CERTIFICATE-----) 
 
+![No Json Example Found](./images/json.png "Certificate String")
 
+and copy the content into the Windows Program **[Dev Toys](https://apps.microsoft.com/detail/9pgcv4v3bk4w)** > _Text_ > _Escape / Unescape_ this will convert the \n into new lines.
+
+![No Text Escape Example Found](./images/text-escape.png "Escaping newlines")
+
+Furthermore, copy the returned output into **[Dev Toys](https://apps.microsoft.com/detail/9pgcv4v3bk4w)** > _Encoders/Decoders_ > Base64 Text this will result in one line of a base64 string.
+
+![No Base64 Encoding Example Found](./images/base64encoder.png "Base64 encoding")
+
+Save the output into the _.env_ file as variable named __ENROLLMENT_CERT_BASE64__
+
+The final .env file should contain this two entries (shortened example):
 ```yml
 # .env file
-ENROLLMENT_DIRECTORY=./enrollment
+ENROLLMENT_CERT_BASE64=LS0tLS1CR...VEUgS0VZLS0tLS5=
 ```
+
+Next we do the same for `enrollment.key` but we dont need to escape the Text because its already in the correct format:
+Copy the full content of `enrollment.key` into **[Dev Toys](https://apps.microsoft.com/detail/9pgcv4v3bk4w)** > _Encoders/Decoders_ > Base64 Text this will result in one line of a base64 string.
+
+
+![No Base64 key Encoding Example Found](./images/base64encoder-key.png "Base64 key encoding")
+
+
+Create the base64 encoded key string and save the output into the _.env_ file as variable named __ENROLLMENT_KEY_BASE64__.
+
+The final .env file should contain this two entries (shortened example):
+```yml
+# .env file
+AGENT_ID=00000000-0000-0000-0000-000000000001
+NODE_URL=https://my-node.tributech-node.com
+ENROLLMENT_CERT_BASE64=LS0tLS1CR...VEUgS0VZLS0tLS5=
+ENROLLMENT_KEY_BASE64=LS0tLS1CRU...VEUgS0VZLS0tLS0K
+```
+
+Now we can reference the two values in the `docker-compose.yml` by setting the corresponding environment variables accordingly, e.g. `docker-compose.yml`:
 
 ```yml
 # docker-compose.yml file
 services:
-  tributech-agent:
-    ...
+    image: ${DOCKER_REGISTRY-tributech.azurecr.io/}tributech-agent:${AGENT_TAG:-latest}
+    depends_on:
+      - mosquitto-server-simulated
     environment:
-      - EnrollmentOptions__Directory=${ENROLLMENT_DIRECTORY:?"The Enrollment Directory must be configured in the .env file."}
+      - MqttOptions__MQTTHost=mosquitto-server-simulated
+      - EdgeDeviceOptions__AgentID=${AGENT_ID:?"The variable AGENT_ID needs to be configured in the .env file."}
+      - EdgeDeviceOptions__NodeUrl=${NODE_URL:?"The variable NODE_URL needs to be configured in the .env file."}
+      - EnrollmentOptions__EnrollmentCertBase64=${ENROLLMENT_CERT_BASE64:?"The variable ENROLLMENT_CERT_BASE64 needs to be configured in the .env file"}
+      - EnrollmentOptions__EnrollmentKeyBase64=${ENROLLMENT_KEY_BASE64:?"The variable ENROLLMENT_KEY_BASE64 needs to be configured in the .env file"}
     ...
 ```
 
