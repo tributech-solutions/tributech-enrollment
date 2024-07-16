@@ -8,6 +8,8 @@ Requirements
 Required Tools:
 - **[openssl](https://github.com/openssl/openssl)**
 - **[Bash 5.2+](https://www.gnu.org/software/bash/manual/bash.html)** for Unix based Systems
+- **[jq](https://jqlang.github.io/jq/)** a lightweight and flexible command-line JSON processor
+- **[base64](https://linux.die.net/man/1/base64)** unix tool to encode/decode data and print to standard output 
 
 Documentation
 ==============================
@@ -78,21 +80,43 @@ After executing the command the script generates 3 files
     </details>
 - enrollment.cnf, can be ignored
 
-Upload the _enrollment.csr_ this file to the Tributech UI or Tributech Node API to receive your signed public key. Save the received public key into the same folder that contains the `enrollment.key` and name the file `enrollment.crt`. Now we can reference the folder containing both files in our `docker-compose.yml` by setting the environment variable `EnrollmentOptions__Directory` accordingly, e.g. `docker-compose.yml` with [env variable](https://docs.docker.com/compose/environment-variables/set-environment-variables/) `ENROLLMENT_DIRECTORY` to reference the enrollment files.
+Upload the _enrollment.csr_ this file to the Tributech UI or Tributech Node API to receive your certificate. 
+Save the returned json file named `certificate.json` in the folder containing the `enrollment.key` and `enrollment.csr` and execute the following command to receive the base64 encoded certificate string:
 
+```bash
+$ jq '.clientCertificate' certificate.json -r | base64 -w0
+```
+Save the output into the _.env_ file as variable named __ENROLLMENT_CERT_BASE64__
 
+Create the base64 encoded key string and save the output into the _.env_ file as variable named __ENROLLMENT_KEY_BASE64__
+
+```bash
+$ cat enrollment.key | base64 -w0
+```
+
+The final .env file should contain this two entries (shortened example):
 ```yml
 # .env file
-ENROLLMENT_DIRECTORY=./enrollment
+AGENT_ID=00000000-0000-0000-0000-000000000001
+NODE_URL=https://my-node.tributech-node.com
+ENROLLMENT_CERT_BASE64=LS0tLS1C...VEUgS0VZLS0tLS0=
+ENROLLMENT_KEY_BASE64=LS0tLS1CR...VEUgS0VZLS0tLS0K
 ```
+
+Now we can reference the two values in the `docker-compose.yml` by setting the corresponding environment variables accordingly, e.g. `docker-compose.yml`:
 
 ```yml
 # docker-compose.yml file
 services:
-  tributech-agent:
-    ...
+    image: ${DOCKER_REGISTRY-tributech.azurecr.io/}tributech-agent:${AGENT_TAG:-latest}
+    depends_on:
+      - mosquitto-server-simulated
     environment:
-      - EnrollmentOptions__Directory=${ENROLLMENT_DIRECTORY:?"The Enrollment Directory must be configured in the .env file."}
+      - MqttOptions__MQTTHost=mosquitto-server-simulated
+      - EdgeDeviceOptions__AgentID=${AGENT_ID:?"The variable AGENT_ID needs to be configured in the .env file."}
+      - EdgeDeviceOptions__NodeUrl=${NODE_URL:?"The variable NODE_URL needs to be configured in the .env file."}
+      - EnrollmentOptions__EnrollmentCertBase64=${ENROLLMENT_CERT_BASE64:?"The variable ENROLLMENT_CERT_BASE64 needs to be configured in the .env file"}
+      - EnrollmentOptions__EnrollmentKeyBase64=${ENROLLMENT_KEY_BASE64:?"The variable ENROLLMENT_KEY_BASE64 needs to be configured in the .env file"}
     ...
 ```
 
