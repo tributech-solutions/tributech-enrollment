@@ -19,11 +19,14 @@ After executing the script, copy the content of the enrollment.csr file and past
 	The script does not delete the created files. It is the responsibility of the user to delete the files after use.
 
 	
-	Usage: [-h] [-j] [-p]
+	Usage: [-h] [-j] [-p] [-e]
 		-h: Show help
 		-j: Additonionally output CSR as json string
 		-p: Additonionally print the CSR also to the console
+		-e: Use ecc instead of rsa 
 
+.PARAMETER -e, --ecc
+	Use ECC instead of RSA for the private key.
 .PARAMETER -h, --help
     Show this help text.
 .PARAMETER -j, --JSON
@@ -72,7 +75,8 @@ After executing the script, copy the content of the enrollment.csr file and past
 param (
     [switch]$h,
     [switch]$j,
-    [switch]$p
+    [switch]$p,
+	[switch]$e
 )
 
 # Set variables
@@ -114,7 +118,13 @@ if (-not (Get-Command "openssl" -ErrorAction SilentlyContinue)) {
 }
 
 # Generate the private key
-openssl genrsa -out $ENROLLMENT_KEY_FILE 2048
+if ($e) {
+	Write-Host "Generating ECC private key..."
+	openssl ecparam -name prime256v1 -genkey -noout -out $ENROLLMENT_KEY_FILE
+} else {
+	Write-Host "Generating RSA private key..."
+	openssl genrsa -out $ENROLLMENT_KEY_FILE 2048
+}
 
 if (-not (Test-Path -Path $ENROLLMENT_KEY_FILE)) {
     Write-Host "Failed to create openssl private key file: $ENROLLMENT_KEY_FILE"

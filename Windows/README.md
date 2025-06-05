@@ -18,6 +18,12 @@ Download the Script [generate-csr.ps1](generate-csr.ps1) to a local folder with 
 > .\generate-csr.ps1
 ```
 
+Per default an rsa key is created for the csr, to change to a ECC key use the command:
+
+```bash
+> .\generate-csr.ps1 -e
+```
+
 After executing the command the script generates 3 files
 
 - enrollment.key, is your private key (**NEVER SHARE OR DELETE THIS FILE**)
