@@ -51,8 +51,9 @@ EOF
 
 FLAG_J=false
 FLAG_P=false
+FLAG_ECC=false
 
-while getopts ":hjp" opt; do
+while getopts ":hjpe" opt; do
     case "$opt" in
         h)
 			echo "$(basename "$0") Generate CSR"
@@ -77,6 +78,7 @@ After executing the script, copy the content of the enrollment.csr file and past
 			echo ""
             echo "Usage: $(basename "$0") [-h] [-j] [-p]"
             echo "  -h: Show help"
+            echo "  -e: Use ECC instead of RSA"
             echo "  -j: Additonionally output CSR as json string"
 			echo "  -p: Additonionally print the CSR also to the console"
             exit 0
@@ -86,6 +88,9 @@ After executing the script, copy the content of the enrollment.csr file and past
             ;;
 		p)
 			FLAG_P=true
+            ;;
+        e)
+            FLAG_ECC=true
             ;;
         \?)
             # Invalid option
@@ -107,7 +112,13 @@ if [ ! -f "$ENROLLMENT_CONFIG_FILE" ]; then
 fi
 
 # Generate the private key
-openssl genrsa -out $ENROLLMENT_KEY_FILE 2048
+if $FLAG_ECC; then
+    echo "Generating ECC private key (prime256v1)..."
+    openssl ecparam -name prime256v1 -genkey -noout -out "$ENROLLMENT_KEY_FILE"
+else
+    echo "Generating RSA private key..."
+    openssl genrsa -out "$ENROLLMENT_KEY_FILE" 2048
+fi
 
 if [ ! -f "$ENROLLMENT_KEY_FILE" ]; then
     echo "Failed to create private key file $ENROLLMENT_KEY_FILE"
