@@ -6,7 +6,8 @@ This repository provides command line tools to register a [Tributech Agent](http
 Requirements
 ==============================
 Required Tools:
-- **[openssl](https://github.com/openssl/openssl)**
+- **[openssl](https://github.com/openssl/openssl)** 
+  **(tested with openssl v3.5.1)**
 - **[Powershell 5.1+](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-windows?view=powershell-5.1)** for Windows
 - **[Dev Toys](https://apps.microsoft.com/detail/9pgcv4v3bk4w)** 
 

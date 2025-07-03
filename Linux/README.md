@@ -6,7 +6,8 @@ This repository provides command line tools to register a [Tributech Agent](http
 Requirements
 ==============================
 Required Tools:
-- **[openssl](https://github.com/openssl/openssl)**
+- **[openssl](https://github.com/openssl/openssl)** 
+  **(tested with openssl v3.0.13)**
 - **[Bash 5.2+](https://www.gnu.org/software/bash/manual/bash.html)** for Unix based Systems
 - **[jq](https://jqlang.github.io/jq/)** a lightweight and flexible command-line JSON processor
 - **[base64](https://linux.die.net/man/1/base64)** unix tool to encode/decode data and print to standard output 
@@ -18,6 +19,13 @@ Download the Script [generate-csr.sh](generate-csr.sh) to a local folder with re
 ```bash
 $ chmod +x generate-csr.sh
 $ ./generate-csr.sh
+```
+
+Per default an rsa key is created for the csr, to change to a ECC key use the command:
+
+```bash
+$ chmod +x generate-csr.sh
+$ ./generate-csr.sh -e
 ```
 
 After executing the command the script generates 3 files
