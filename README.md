@@ -17,10 +17,10 @@ Table of Contents
 Overview
 ==============================
 Required Tools:
-- **[openssl](https://github.com/openssl/openssl)**
+- **[openssl](https://github.com/openssl/openssl)** 
     OpenSSL is a robust, commercial-grade, full-featured Open Source Toolkit
 for the TLS (formerly SSL), DTLS and QUIC (currently client side only)
-protocols.
+protocols. **(tested in windows with openssl v3.5.1 and in ubuntu 24.04 with openssl v3.0.13)**
 - **[Powershell 5.1+](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-windows?view=powershell-5.1)** for Windows
 - **[Bash 5.2+](https://www.gnu.org/software/bash/manual/bash.html)** for Unix based Systems
 
