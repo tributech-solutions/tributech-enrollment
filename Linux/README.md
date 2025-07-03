@@ -21,6 +21,13 @@ $ chmod +x generate-csr.sh
 $ ./generate-csr.sh
 ```
 
+Per default an rsa key is created for the csr, to change to a ECC key use the command:
+
+```bash
+$ chmod +x generate-csr.sh
+$ ./generate-csr.sh -e
+```
+
 After executing the command the script generates 3 files
 
 - enrollment.key, is your private key (**NEVER SHARE OR DELETE THIS FILE**)
